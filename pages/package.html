@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Package</title>
+    <!-- AOS (Animate On Scroll) ライブラリのCSSを読み込み -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+        /* 全体的なスタイル設定 */
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; /* より現代的なフォントスタック */
+            background-color: #000; /* 全体の背景色を黒に設定 */
+            color: #fff; /* 全体のテキスト色を白に設定 */
+            overflow-x: hidden; /* 横スクロールを禁止 */
+            font-size: 16px; /* PCベースのフォントサイズを微調整 */
+            line-height: 1.6; /* 行の高さ */
+            -webkit-font-smoothing: antialiased; /* フォントのアンチエイリアス */
+        }
+
+        /* ヘッダーのスタイル */
+        header {
+            position: sticky; /* スクロールしても固定 */
+            top: 0;
+            background: #000; /* 背景色を黒に設定 */
+            z-index: 1000; /* 他の要素より手前に表示 */
+            padding: 15px 20px; /* パディングを微調整 */
+            display: flex;
+            justify-content: center; /* 中央に配置 */
+            align-items: center;
+            height: 70px; /* 高さを微調整 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* ヘッダーに影を追加 */
+        }
+
+        /* モバイル用メニュー切り替えボタン */
+        .menu-toggle {
+            display: none; /* 初期状態では非表示 */
+            flex-direction: column;
+            cursor: pointer;
+            position: absolute;
+            left: 20px;
+            z-index: 1003; /* ナビゲーションやヘッダーの上に表示 */
+        }
+
+        .menu-toggle span {
+            background: white; /* ハンバーガーアイコンの色 */
+            height: 3px;
+            margin: 5px 0; /* マージンを微調整 */
+            width: 30px; /* 幅を微調整 */
+            transition: all 0.3s ease-in-out; /* アニメーション追加 */
+        }
+
+        /* ハンバーガーメニューのアニメーション */
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ナビゲーションメニュー */
+        nav ul {
+            display: flex;
+            gap: 30px; /* 項目間のスペースを微調整 */
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a,
+        nav a:visited {
+            color: #fff; /* リンクの色 */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.05rem; /* フォントサイズを微調整 */
+            transition: color 0.3s ease; /* ホバーアニメーション */
+        }
+
+        nav a:hover,
+        nav a:active,
+        nav a:focus {
+            color: #007bff; /* ホバー時の色を青に */
+        }
+
+       /* 全体的なスタイル設定 */
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; /* より現代的なフォントスタック */
+    background-color: #000; /* 全体の背景色を黒に設定 */
+    color: #fff; /* 全体のテキスト色を白に設定 */
+    overflow-x: hidden; /* 横スクロールを禁止 */
+    font-size: 16px; /* PCベースのフォントサイズを微調整 */
+    line-height: 1.6; /* 行の高さ */
+    -webkit-font-smoothing: antialiased; /* フォントのアンチエイリアス */
+}
+
+/* ヘッダーのスタイル */
+header {
+    position: sticky; /* スクロールしても固定 */
+    top: 0;
+    background: #000; /* 背景色を黒に設定 */
+    z-index: 1000; /* 他の要素より手前に表示 */
+    padding: 15px 20px; /* パディングを微調整 */
+    display: flex;
+    justify-content: space-between; /* ロゴとナビゲーションを両端に配置 */
+    align-items: center; /* 垂直方向中央揃え */
+    width: calc(100% - 40px); /* 幅を調整 */
+    max-width: 1200px; /* 最大幅を設定 */
+    margin: 0 auto; /* 中央揃え */
+    border-radius: 10px; /* 角丸にする */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 軽い影 */
+}
+
+/* ロゴのスタイル */
+.logo {
+    font-weight: bold;
+    font-size: 1.5rem; /* ロゴのフォントサイズ */
+    color: #fff; /* ロゴの色を白に設定 */
+    text-decoration: none; /* 下線を削除 */
+}
+
+/* ナビゲーションのスタイル */
+nav ul {
+    list-style: none; /* リストの点を削除 */
+    margin: 0;
+    padding: 0;
+    display: flex; /* 横並びにする */
+    gap: 30px; /* 項目間のスペース */
+}
+
+nav a {
+    color: #fff; /* リンクの色を白に設定 */
+    text-decoration: none; /* 下線を削除 */
+    font-size: 1.1rem; /* リンクのフォントサイズ */
+    transition: color 0.3s ease; /* ホバーアニメーション */
+}
+
+nav a:hover {
+    color: #007bff; /* ホバー時の色 */
+}
+
+/* ハンバーガーメニューアイコン（PCでは非表示） */
+.menu-toggle {
+    display: none; /* PCでは非表示 */
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1003; /* ナビゲーションより手前に */
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* ハンバーガーメニューのアニメーション */
+.menu-toggle.active .bar1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-toggle.active .bar2 {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* セクションのスタイル */
+section {
+    padding: 60px 20px; /* 上下のパディングを少し増やす */
+    max-width: 1200px; /* 最大幅を設定 */
+    margin: 0 auto; /* 中央揃え */
+    text-align: center; /* テキスト中央揃え */
+    color: #fff; /* セクション内のテキスト色を白に */
+}
+
+/* h2（見出し）のスタイル */
+h2 {
+    font-size: 2.0rem; /* 各ワークセクションのPC向け見出しサイズを統一 */
+    margin-bottom: 40px;
+    color: #333; /* 各ワークセクションの見出し色を黒に */
+    text-align: center; /* 中央揃え */
+}
+
+h3 {
+    font-size: 1.5rem; /* 小見出しサイズ */
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #eee;
+}
+
+p {
+    font-size: 1.1rem; /* 段落のフォントサイズを微調整 */
+    line-height: 1.8; /* 行の高さ */
+    margin-bottom: 20px;
+    color: #ccc; /* 段落のテキスト色を少し明るく */
+}
+
+/* ホームセクション */
+#home {
+    min-height: 100vh; /* 画面全体に広がる */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('https://github.com/tomo0211/portfolio-site/blob/main/images/main_background.jpg?raw=true') no-repeat center center/cover; /* 背景画像を適用 */
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* 影を付けて読みやすく */
+}
+
+#home h1 {
+    font-size: 3.5rem; /* メインタイトルを大きく */
+    margin-bottom: 20px;
+    letter-spacing: 0.08em; /* 文字間隔を広げる */
+}
+
+#home p {
+    font-size: 1.5rem; /* サブテキストを大きく */
+    margin-bottom: 30px;
+    letter-spacing: 0.05em;
+}
+
+.cta-button {
+    background-color: #007bff; /* ボタンの背景色 */
+    color: #fff; /* ボタンのテキスト色 */
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3; /* ホバー時の色 */
+}
+
+/* 各ワークセクションのレイアウト */
+.work-container {
+    display: flex;
+    align-items: flex-start; /* 上端を揃える */
+    gap: 40px; /* 記述と画像の間のスペース */
+    margin-bottom: 80px; /* 各ワークコンテナの下にスペース */
+    flex-wrap: wrap; /* 小さな画面で折り返す */
+}
+
+.work-description {
+    flex: 1; /* 残りのスペースを埋める */
+    text-align: left; /* テキスト左揃え */
+    min-width: 300px; /* 最小幅を設定 */
+    opacity: 0; /* 初期状態は非表示 */
+    transform: translateY(20px); /* 少し下に移動 */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* アニメーション */
+}
+
+.work-description.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.work-description h2 {
+        font-size: 1.6rem;    /* PCでの見出し文字の大きさ（例） */
+        color: #333;   /* 見出しの色（共通） */
+        line-height: 1.4;   /* 見出しの行の高さ（共通） */
+        text-align: center; /* 見出しを中央揃えに（共通） */
+    }
+
+
+.work-images-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 画像を中央揃え */
+    min-width: 300px; /* 最小幅を設定 */
+    opacity: 0; /* 初期状態は非表示 */
+    transform: translateY(20px); /* 少し下に移動 */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* アニメーション */
+}
+
+.work-images-wrapper.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.work-images-wrapper .main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* 角丸にする */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* 影 */
+    margin-bottom: 15px; /* メイン画像の下にスペース */
+}
+
+.work-images-wrapper .sub-images {
+    display: flex;
+    gap: 10px; /* サブ画像間のスペース */
+    width: 100%; /* 親要素の幅に合わせる */
+    justify-content: center; /* 中央揃え */
+}
+
+.work-images-wrapper .sub-images img {
+    width: calc(50% - 5px); /* 2つのサブ画像が横に並ぶように */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* お問い合わせセクション */
+#contact .contact-form {
+    background-color: #1a1a1a; /* フォームの背景色 */
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 40px auto; /* 上下のマージンを調整 */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    text-align: left; /* フォーム内のテキストは左揃え */
+}
+
+#contact .contact-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #fff;
+}
+
+#contact .contact-form input[type="text"],
+#contact .contact-form input[type="email"],
+#contact .contact-form textarea {
+    width: calc(100% - 20px); /* パディングを考慮 */
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #444; /* 枠線の色 */
+    border-radius: 5px;
+    background-color: #333; /* 入力フィールドの背景色 */
+    color: #fff; /* 入力テキストの色 */
+    font-size: 1rem;
+}
+
+#contact .contact-form textarea {
+    min-height: 150px; /* テキストエリアの最小高さ */
+    resize: vertical; /* 垂直方向にリサイズ可能 */
+}
+
+#contact .contact-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+#contact .contact-form button:hover {
+    background-color: #0056b3;
+}
+
+/* フッターのスタイル */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #000;
+    color: #888; /* フッターのテキスト色を暗く */
+    font-size: 0.9rem;
+    border-top: 1px solid #1a1a1a; /* 上部に細い線 */
+}
+
+/* モバイル時のナビゲーション（768px以下） */
+@media (max-width: 768px) {
+    body {
+        font-size: 15px; /* 全体文字サイズ微調整 */
+    }
+
+    header {
+        padding: 10px 15px;
+    }
+
+    .logo {
+        font-size: 1.2rem; /* モバイルでのロゴサイズ */
+    }
+
+    .menu-toggle {
+        display: flex; /* モバイルで表示 */
+    }
+
+    nav ul {
+        flex-direction: column; /* 縦並びにする */
+        position: fixed; /* 固定配置 */
+        top: 0; /* ヘッダーの高さ分ではなく画面の最上部から */
+        left: -100%; /* 初期状態では画面外に配置 */
+        width: 100%;
+        height: 100vh; /* 全画面を覆う */
+        background: rgba(0, 0, 0, 0.95); /* 背景色を半透明の黒に */
+        color: #fff; /* テキスト色を白に */
+        display: flex; /* アクティブでなくてもフレックスにする */
+        justify-content: center; /* 垂直方向中央揃え */
+        align-items: center; /* 水平方向中央揃え */
+        padding: 0; /* パディングをリセット */
+        transition: left 0.5s ease-in-out; /* スライドアニメーション */
+        z-index: 1002; /* ハンバーガーメニューより下に、ヘッダーより上に */
+    }
+
+    nav ul.active {
+        left: 0; /* アクティブ時に表示 */
+        z-index: 1002; /* アクティブ時も同じz-indexで表示 */
+    }
+
+    nav ul li {
+        text-align: center; /* 中央揃え */
+        margin-bottom: 25px; /* 項目間のマージン */
+    }
+
+    nav a {
+        color: #fff; /* モバイルメニュー内のリンク色を白に統一 */
+        font-size: 1.8rem; /* モバイルメニュー内のフォントサイズを大きく */
+        padding: 10px 0;
+        display: block; /* リンク全体をクリック可能に */
+    }
+
+    header {
+        border-radius: 0; /* モバイルではヘッダーの角丸をリセット */
+    }
+
+    /* 各セクションの調整 */
+    section {
+        padding: 40px 15px; /* モバイルでのパディングを調整 */
+    }
+
+    #home h1 {
+        font-size: 2.5rem; /* モバイルでのタイトルサイズ */
+    }
+
+    #home p {
+        font-size: 1.2rem; /* モバイルでのサブテキストサイズ */
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    /* ワークセクションのレイアウト調整 */
+    .work-container {
+        flex-direction: column; /* 縦並びにする */
+        gap: 30px; /* 間隔を調整 */
+    }
+
+    .work-description,
+    .work-images-wrapper {
+        min-width: unset; /* 最小幅を解除 */
+        width: 100%; /* 幅を100%に */
+        text-align: center; /* 中央揃えに */
+    }
+    
+    .work-description p {
+        text-align: left; /* pタグ内のテキストは左揃えに戻す */
+    }
+
+    .work-images-wrapper .sub-images img {
+        width: calc(50% - 5px); /* 50%幅を維持 */
+    }
+
+    /* h2 見出しのモバイル調整 */
+    h2 {
+        font-size: 1.8rem; /* 見出しサイズを微調整 */
+    }
+
+    /* 大門歯科クリニックのh2のスタイルをモバイルでのみ適用 */
+    #promotional .work-description h2 {
+        font-size: 1.5rem; /* スマホでの希望する小さなサイズ */
+    }
+
+    /* スライダーの調整 */
+    .slider {
+        height: 60vh; /* モバイルでの高さ調整 */
+    }
+
+    .slide {
+        font-size: 1.8rem; /* モバイルでのスライダー文字サイズ */
+    }
+
+    .indicators {
+        bottom: 15px; /* モバイルでの位置調整 */
+        gap: 6px;
+    }
+
+    /* お問い合わせフォームの調整 */
+    #contact .contact-form {
+        padding: 25px;
+        margin: 30px auto;
+    }
+
+    #contact .contact-form input[type="text"],
+    #contact .contact-form input[type="email"],
+    #contact .contact-form textarea {
+        width: calc(100% - 24px); /* パディング込みで調整 */
+    }
+}
+
+/* PC時のナビゲーション（769px以上） */
+@media (min-width: 769px) {
+    nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* スライダーコンテナ */
+.slider {
+    width: 100%;
+    height: 80vh; /* ビューポートの高さに対する割合を少し増やす */
+    overflow: hidden;
+    position: relative;
+}
+
+/* スライドの親コンテナ */
+.slides {
+    position: relative; /* absoluteからrelativeに変更し、中のslideをabsoluteにする */
+    width: 100%;
+    height: 100%;
+}
+
+/* 各スライドのスタイル */
+.slide {
+    font-family: 'Helvetica Neue', sans-serif; /* スライド内のフォント */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* テキストを中央に配置するために変更 */
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem; /* PC時のスライダー文字サイズを少し大きく */
+    color: #fff;
+    background-size: cover; /* 画像をカバーで表示 */
+    background-position: center;
+    text-shadow: 0 0 20px rgba(0,0,0,0.9); /* 文字の影を強調 */
+    opacity: 0; /* 初期状態は非表示 */
+    transition: opacity 0.8s ease-in-out; /* フェードアニメーションをスムーズに */
+    pointer-events: none; /* 非表示時はクリック不可 */
+    font-weight: bold;
+    letter-spacing: 0.05em; /* 文字間隔を調整 */
+    text-align: center; /* テキスト中央揃え */
+    padding: 0 20px; /* 左右にパディング */
+}
+
+.slide.active {
+    opacity: 1; /* アクティブ時に表示 */
+    position: relative;
+    z-index: 1;
+    pointer-events: auto; /* アクティブ時はクリック可能 */
+}
+
+/* スライダー画像
+.slide1 { background-image: url('https://github.com/tomo0211/portfolio-site/blob/main/images/daimon.jpg?raw=true'); }
+.slide2 { background-image: url('https://github.com/tomo0211/portfolio-site/blob/main/images/rikka2.jpg?raw=true'); }
+.slide3 { background-image: url('https://github.com/tomo0211/portfolio-site/blob/main/images/shiba2.jpg?raw=true'); }
+.slide4 { background-image: url('https://github.com/tomo0211/portfolio-site/blob/main/images/shiba.jpg?raw=true'); }
+.slide5 { background-image: url('https://github.com/tomo0211/portfolio-site/blob/main/images/nanaco.jpg?raw=true'); } */
+
+/* スライダーインジケーター */
+.indicators {
+    position: absolute;
+    bottom: 20px; /* 少し上に配置 */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px; /* 間隔を広げる */
+    z-index: 10;
+}
+        .indicator {
+            width: 35px; /* 横長の細い四角を少し大きく */
+            height: 5px; /* 高さを少し大きく */
+            background: rgba(255, 255, 255, 0.4); /* 透明度を少し下げる */
+            cursor: pointer;
+            border-radius: 0; /* 角丸を削除 */
+            transition: background 0.3s ease, width 0.3s ease; /* ホバーアニメーション */
+        }
+
+        .indicator.active {
+            background: #fff;
+            width: 50px; /* アクティブ時に少し長くする */
+        }
+
+        /* 各コンテンツセクションの共通スタイル */
+        section {
+            position: relative;
+            z-index: 1;
+            background-color: #fff; /* セクションの背景は白に */
+            color: #333; /* セクション内のテキスト色を黒に設定 */
+            margin: 60px auto; /* 上下のマージンを調整 */
+            padding: 60px 30px; /* セクションのパディングを調整 */
+            max-width: 1100px; /* 最大幅を調整 */
+            border-radius: 0; /* 角丸を削除 */
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* 影を強調 */
+            min-height: 50vh; /* 各ワークセクションの最小高さを確保 */
+            display: flex;
+            flex-direction: column; /* デフォルトで縦並びにし、中身をflex-wrapで調整 */
+            align-items: center; /* 水平方向中央揃え */
+        }
+
+        /* About Me セクションのみ中央寄せ */
+        #about {
+            text-align: center;
+            padding: 80px 30px;
+            background-color: #000; /* About Meセクションの背景を黒に設定 */
+            color: #fff; /* About Meセクションのテキスト色を白に設定 */
+            box-shadow: 0 8px 25px rgba(255,255,255,0.15); /* 影を明るく調整 */
+        }
+
+        /* PCでのAbout Meの見出しサイズを調整（他のh2と統一） */
+        @media (min-width: 769px) {
+            #about h2 {
+                color: #fff; /* About Meの見出し色を白に設定 */
+                margin-bottom: 30px;
+                /* font-size: 2.0rem; は共通h2で設定されるため削除 */
+            }
+        }
+
+        /* セクション見出しのスタイル */
+        h2 {
+            font-size: 1.8rem; /* 各ワークセクションのPC向け見出しサイズを統一 */
+            margin-bottom: 40px;
+            color: #333; /* 各ワークセクションの見出し色を黒に */
+            text-align: center; /* 中央揃え */
+        }
+
+        /* About Meセクション内のh2, p, ul, h3のテキスト色を白に */
+        #about p, #about ul, #about h3 {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #fff; /* About Meセクション内のテキスト色を白に設定 */
+            font-size: 1.05rem; /* フォントサイズを微調整 */
+        }
+        #about ul {
+            list-style: none; /* リストスタイルを削除 */
+            padding-left: 0; /* パディングをリセット */
+            text-align: center; /* リスト項目も中央揃え */
+        }
+        #about ul li {
+            position: relative;
+            padding-left: 25px; /* アイコン分のスペース */
+            margin-bottom: 10px;
+        }
+        #about ul li::before {
+            content: '✓'; /* チェックマークアイコン */
+            color: #007bff;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #about a {
+            color: #007bff; /* About Meセクション内のリンク色を青に維持 */
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        #about a:hover {
+            color: #0056b3; /* ホバー時の色 */
+        }
+
+
+        /* セクション内の段落スタイル */
+        p {
+            font-size: 1.0rem; /* 約16px */
+            color: #555; /* 段落テキスト色を少し濃いグレーに */
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        /* 各ワークセクションのコンテナ（左テキスト、右画像） */
+        .work-container {
+            display: flex;
+            flex-wrap: wrap; /* 折り返しを許可 */
+            align-items: center;
+            width: 100%;
+            gap: 50px; /* 要素間のスペースを広く */
+            justify-content: center; /* 中央揃え */
+        }
+
+        /* テキスト部分のスタイルとアニメーション */
+        .work-description {
+            flex: 2; /* テキスト部分の幅を狭める (全体の2/5) */
+            padding: 20px;
+            min-width: 320px; /* 最小幅を設定 */
+            opacity: 0;
+            transform: translateX(-60px); /* 左からスライドイン */
+            transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .work-description.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* 画像部分のスタイルとアニメーション */
+        .work-images-wrapper {
+            flex: 3; /* 画像部分の幅を広げる (全体の3/5) */
+            padding: 20px;
+            min-width: 320px; /* 最小幅を設定 */
+            opacity: 0;
+            transform: translateX(60px); /* 右からスライドイン */
+            transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .work-images-wrapper.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 25px; /* マージンを調整 */
+            border-radius: 0; /* 角丸を削除 */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* 影を強調 */
+        }
+
+        .sub-images {
+            display: flex;
+            gap: 20px; /* サブ画像間のスペースを広く */
+            justify-content: center;
+            flex-wrap: wrap; /* 折り返しを許可 */
+        }
+
+        .sub-images img {
+            width: calc(50% - 10px); /* 2枚横並びを維持 */
+            height: auto;
+            border-radius: 0; /* 角丸を削除 */
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1); /* 控えめな影 */
+        }
+        /* 各ワークセクション内のリンク */
+        .work-description a {
+            color: #007bff; /* 青色のリンクを維持 */
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        .work-description a:hover {
+            color: #0056b3;
+        }
+
+        /* Othersセクションのギャラリーグリッド (タイル表示) */
+        #others {
+            background-color: #111; /* 背景色を少し濃い黒に */
+            color: #fff; /* テキストを白に */
+            padding: 80px 20px; /* パディングを増やす */
+            min-height: auto; /* 最小高さを解除 */
+            max-width: none; /* 最大幅の制限をなくす */
+            margin: 60px auto; /* 上下のマージンを適用 */
+            border-radius: 0; /* 角丸を削除 */
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* 影を強調 */
+            display: block; /* Flexboxを解除してブロック要素に戻す */
+            text-align: center; /* 見出しを中央揃え */
+        }
+
+        #others h2 {
+            display: block; /* 見出しを再表示 */
+            color: #fff; /* 見出し色を白に */
+            text-align: center; /* 中央揃え */
+            margin-bottom: 50px; /* 下マージン */
+        }
+        /* Othersセクション内のPタグは引き続き非表示 */
+        #others p {
+            display: none;
+        }
+
+        #others .gallery {
+            display: grid;
+            /* PCサイズでは自動で列を調整し、各列の最小幅を200pxとする */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            /* 行の高さは固定で200px */
+            grid-auto-rows: 200px;
+            gap: 15px; /* 画像間の隙間を適度に設定 */
+            width: 100%; /* フル幅に */
+            max-width: 1200px; /* 最大幅を設定 */
+            margin: 0 auto; /* 中央揃え */
+            border-radius: 0; /* 角丸を削除 */
+            overflow: hidden; /* 角丸からはみ出さないように */
+        }
+
+        #others .gallery-item {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 画像をコンテナに収まるようにトリミング */
+            border-radius: 0; /* 角丸を削除 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 少し強めの影 */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* ホバーアニメーション */
+            cursor: pointer;
+        }
+
+        #others .gallery-item:hover {
+            transform: scale(1.05); /* ホバーで少し拡大 */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* ホバー時に影を強調 */
+            z-index: 1; /* ホバー時に他の画像の上に表示 */
+        }
+
+        /* 画像の大きさのバリエーション (グリッドの列と行のスパンを調整) */
+        #others .gallery-item.size-small {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        #others .gallery-item.size-medium {
+            grid-column: span 2; /* 幅2マス */
+            grid-row: span 1; /* 高さ1マス */
+        }
+
+        #others .gallery-item.size-large {
+            grid-column: span 2; /* 幅2マス */
+            grid-row: span 2; /* 高さ2マス */
+        }
+
+        /* フッター */
+        footer {
+            background-color: #000;
+            color: #aaa; /* 色を少し薄く */
+            text-align: center;
+            padding: 2rem 0; /* パディングを増やす */
+            margin-top: 80px; /* 上マージンを増やす */
+            font-size: 0.9rem;
+        }
+
+        /* スマホ表示用調整（768px以下） */
+        @media (max-width: 768px) {
+            body {
+                font-size: 15px; /* 全体文字サイズ微調整 */
+            }
+
+            /* スマホでのAbout Meの見出しサイズを統一 */
+            #about h2 {
+                font-size: 1.8rem; /* About Meの見出しサイズをモバイル向けに統一 */
+            }
+
+            h2 {
+                font-size: 1.8rem; /* 見出しサイズを微調整 */
+            }
+
+            p {
+                font-size: 0.95rem; /* 段落サイズ微調整 */
+            }
+
+            .slider {
+                height: 40vh; /* モバイルでのスライダー高さを調整 */
+            }
+
+            .slide {
+                font-size: 1.5rem; /* スライダー文字を控えめに */
+                letter-spacing: 0.03em;
+                line-height: 1.4;
+                padding: 0 15px;
+            }
+            .indicators {
+                bottom: 15px; /* モバイルでのインジケーター位置 */
+            }
+            .indicator {
+                width: 25px;
+                height: 4px;
+            }
+            .indicator.active {
+                width: 40px;
+            }
+
+            section {
+                padding: 30px 20px; /* モバイルでのパディングを調整 */
+                margin: 40px auto; /* モバイルでのマージンを調整 */
+                border-radius: 0; /* 角丸を削除 */
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 影を調整 */
+            }
+
+
+            .work-container {
+                flex-direction: column; /* 縦並びにする */
+                gap: 30px; /* 間隔を調整 */
+            }
+
+            .work-description,
+            .work-images-wrapper {
+                width: 100%; /* 全幅を使用 */
+                transform: none !important; /* スクロールアニメーションを無効化 */
+                opacity: 1 !important; /* モバイルでは常に見えるように */
+                padding: 0; /* モバイルではパディングを調整 */
+                min-width: unset; /* 最小幅を解除 */
+            }
+
+            .main-image {
+                margin-bottom: 15px;
+                border-radius: 0; /* 角丸を削除 */
+                box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            }
+
+            .sub-images {
+                flex-direction: row; /* サブ画像は2列で維持 */
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .sub-images img {
+                width: calc(50% - 5px); /* スマホで画像が2列に並ぶように幅を調整 */
+                border-radius: 0; /* 角丸を削除 */
+                box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            }
+
+            #others {
+                padding: 40px 15px; /* モバイルでのパディングを調整 */
+                margin: 40px auto; /* モバイルでのマージンを調整 */
+                border-radius: 0; /* 角丸を削除 */
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* 影を調整 */
+            }
+            #others h2 {
+                margin-bottom: 30px;
+            }
+            #others .gallery {
+                /* モバイルではより小さなタイルで、さらに多くの列を試みる */
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* モバイルでのグリッド調整 */
+                grid-auto-rows: 100px; /* モバイルでの行の高さを固定 */
+                gap: 8px; /* モバイルでの隙間を調整 */
+                border-radius: 0; /* 角丸を削除 */
+            }
+
+            #others .gallery-item {
+                border-radius: 0; /* 角丸を削除 */
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* モバイルでの影を調整 */
+            }
+
+            #others .gallery-item.size-large,
+            #others .gallery-item.size-medium {
+                grid-column: span 1; /* モバイルでは全て1列スパンに */
+                grid-row: span 1;
+            }
+        }
+        /* スライド内のテキストをモバイルで調整 */
+        @media (max-width: 480px) {
+            .slide {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#promotional">Promotional design</a></li>
+        <li><a href="https://tomo0211.github.io/portfolio-site/pages/package.html">Package</a></li>
+        <li><a href="#store">Online store</a></li>
+        <li><a href="#webgraphic">Web graphic</a></li>
+        <li><a href="https://tomo0211.github.io/portfolio-site/pages/logo.html">Logo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--<div class="slider">
+        <div class="slides">
+            <div class="slide slide1 active"></div>
+            <div class="slide slide2"></div>
+            <div class="slide slide3"></div>
+            <div class="slide slide4"></div>
+            <div class="slide slide5"></div>
+        </div>
+        <div class="indicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+            <span class="indicator" data-index="3"></span>
+            <span class="indicator" data-index="4"></span>
+        </div>
+    </div>-->
+
+    <main>
+        <section id="about" data-aos="fade-up">
+            <h2 style="color: #ffffff;">Coffee Package</h2>
+            <p>コーヒー販売のパッケージデザインを中心に、多くの案件に携わってきました。<br>
+商品ごとの個性やストーリー、世界観を大切に<br>
+手に取った瞬間に「美味しそう」「贈りたくなる」と思っていただけるようなデザインを心がけています。
+こちらでは、実際に制作したパッケージデザインの一部をご紹介しています。</p>
+            <!--<h3>スキルセット</h3>
+            <ul>
+                <li>HTML5 / CSS3 / JavaScript</li>
+                <li>Photoshop / Illustrator</li>
+                <li>UI/UXデザイン</li>
+            </ul>
+            <h3>お問い合わせ</h3>
+            <p>
+                ご質問やプロジェクトのご依頼がございましたら、お気軽にご連絡ください。<br>
+                Email: <a href="mailto:okada_work@gmail.com">okada_work@gmail.com</a>
+            </p>-->
+        </section>
+
+        <!-- KOUNOU セクション -->
+        <section id="promotional">
+            <div class="work-container">
+                <div class="work-description">
+                    <h2>スペシャルティコーヒー｜定番アイテム</h2>
+                    <p>
+                        スタンダードシリーズは、日常に自然となじむシンプルなパッケージに。<br>
+ブランドカラーのネイビーを基調に、落ち着いた印象に仕上げました。<br>
+スタンプやカードを組み合わせて自由にアレンジできるよう、あえて余白を残したデザインにしています。<br>
+定番商品として長く使える、飽きのこない佇まいが特徴です。
+                    </p>
+                </div>
+                <div class="work-images-wrapper">
+                    <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/ETH_top.jpg?raw=true" alt="Promotional Design Main Image" class="main-image" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    <div class="sub-images">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/kounou.jpg?raw=true" alt="Promotional Design Sub Image 1" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/gua-d_top.jpg?raw=true" alt="Promotional Design Sub Image 2" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- geisha セクション -->
+        <section id="package">
+            <div class="work-container">
+                <div class="work-description">
+                    <h2>特別感のあるコーヒー｜Geisha シリーズ</h2>
+                    <p>特別なコーヒーにふさわしい装いを目指し、Geisha専用のパッケージを作成しました。<br>
+                        静かな存在感と上品さを感じられるデザインになるよう、余白やバランスに配慮し、控えめながら印象に残る仕上がりを目指しました。<br>
+贈りものや限定販売など、特別なシーンにも静かに寄り添えるよう願いを込めて。
+                    </p>
+                </div>
+                <div class="work-images-wrapper">
+                    <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/GEI-W.jpg?raw=true" alt="Package Design Main Image" class="main-image" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    <div class="sub-images">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/GEISHA.jpg?raw=true" alt="Package Design Sub Image 1" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/GEI-25.PT01.jpg?raw=true" alt="Package Design Sub Image 2" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- yunnan セクション -->
+        <section id="store">
+            <div class="work-container">
+                <div class="work-description">
+                    <h2>雲南省で育まれた｜Top of Yunnan</h2>
+                    <p>雲南省の高原で育った、高品質なコーヒー豆を使った「Top of Yunnan」シリーズ。<br>
+高い標高の山々の透き通る空気ややわらかな陽の光をイメージしています。<br>雲南の高原風景をモチーフにしたパッケージに仕上げました。<br>
+                    </p>
+                </div>
+                <div class="work-images-wrapper">
+                    <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/top_yunnan.jpg?raw=true" alt="Online Store Main Image" class="main-image" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    <!--<div class="sub-images">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/siba_3.jpg?raw=true" alt="Online Store Sub Image 1" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/shiba1.jpg?raw=true" alt="Online Store Sub Image 2" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    </div>-->
+                </div>
+            </div>
+        </section>
+
+         <!-- zou セクション -->
+        <section id="store">
+            <div class="work-container">
+                <div class="work-description">
+                    <h2>世界をめぐる｜象が届ける一杯</h2>
+                    <p>本シリーズのパッケージは、ブランドの象徴であるゾウのロゴをモチーフにしたデザインです。<br>
+各国のシングルオリジンコーヒーの特徴を大切にし、国旗のカラーを取り入れつつ、親しみやすさを感じられるポップな要素も加えました。<br>
+シリーズで並べた際には、ささやかな統一感と多様な個性が楽しめるよう配慮しました。<br>
+手に取っていただく方に気軽に手に取っていただける、明るくわかりやすいデザインを心がけております。
+                    </p>
+                </div>
+                <div class="work-images-wrapper">
+                    <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/zou_top4.jpg?raw=true" alt="Online Store Main Image" class="main-image" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    <!----><div class="sub-images">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/zou_top2.jpg?raw=true" alt="Online Store Sub Image 1" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/zou_top.jpg?raw=true" alt="Online Store Sub Image 2" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- blend セクション -->
+        <section id="store">
+            <div class="work-container">
+                <div class="work-description">
+                    <h2>個性豊かな｜オリジナルブレンド</h2>
+                    <p>世界各地のコーヒー豆を厳選し、多彩なコンセプトで仕上げたオリジナルブレンドシリーズ。<br>
+それぞれの個性を引き立てるため、国やテーマに合わせたデザインを展開しています。<br>
+見た目にも楽しめるパッケージで、味わいの幅広さと独自性を表現しました。<br>
+ひとつひとつに込めたストーリーとともに、個性を表現したパッケージです。
+                    </p>
+                </div>
+                <div class="work-images-wrapper">
+                    <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/CP-BL.jpg?raw=true" alt="Online Store Main Image" class="main-image" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    <!----><div class="sub-images">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/GD-BL.jpg?raw=true" alt="Online Store Sub Image 1" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/7set_top.jpg?raw=true" alt="Online Store Sub Image 2" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- kamosu セクション -->
+        <section id="store">
+            <div class="work-container">
+                <div class="work-description">
+                    <h2>お酒の発酵プロセス｜醸シリーズ</h2>
+                    <p>お酒を使い独自の発酵工程を経て仕上げた、個性豊かなコーヒーのシリーズです。<br>
+日本酒の伝統的な美しさや繊細さをイメージし、ラベルデザインは和の趣を感じられるよう丁寧に仕立てました。<br>
+控えめながらも味わい深い存在感を大切にし、コーヒーの枠を超えたパッケージに仕上げました。
+                    </p>
+                </div>
+                <div class="work-images-wrapper">
+                    <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/kamosu.jpg?raw=true" alt="Online Store Main Image" class="main-image" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    <!--<div class="sub-images">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/siba_3.jpg?raw=true" alt="Online Store Sub Image 1" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                        <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/shiba1.jpg?raw=true" alt="Online Store Sub Image 2" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                    </div>-->
+                </div>
+            </div>
+        </section>
+
+       
+       
+
+        <!-- Others セクション 
+        <section id="others">
+            <h2>Others</h2>
+            <div class="gallery">
+                
+                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/96.jpg?raw=true" alt="Other Image 1" class="gallery-item size-large" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/96_3.jpg?raw=true" alt="Other Image 2" class="gallery-item size-medium" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/daimon2.jpg?raw=true" alt="Other Image 3" class="gallery-item size-small" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/luonto.jpg?raw=true" alt="Other Image 4" class="gallery-item size-medium" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/Yunnan.jpg?raw=true" alt="Other Image 5" class="gallery-item size-small" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/zou2.jpg?raw=true" alt="Other Image 6" class="gallery-item size-large" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/nanako.jpg?raw=true" alt="Other Image 7" class="gallery-item size-small" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/nanako3.jpg?raw=true" alt="Other Image 8" class="gallery-item size-medium" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/daimon5.jpg?raw=true" alt="Other Image 9" class="gallery-item size-large" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/safebase.jpg?raw=true" alt="Other Image 10" class="gallery-item size-small" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
+            </div>
+        </section> -->
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </footer>
+
+    <!-- AOS (Animate On Scroll) ライブラリのJSを読み込み -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // AOSを初期化
+        AOS.init({ duration: 1000, once: true });
+
+        // スライダー制御
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        let currentIndex = 0;
+        const slideCount = slides.length;
+
+        function showSlide(index) {
+            // 現在アクティブなスライドとインジケーターからactiveクラスを削除
+            slides[currentIndex].classList.remove('active');
+            indicators[currentIndex].classList.remove('active');
+
+            // 新しいスライドとインジケーターにactiveクラスを追加
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            currentIndex = index;
+        }
+
+        // インジケータークリックでスライド切り替え
+        indicators.forEach(indicator => {
+            indicator.addEventListener('click', () => {
+                const index = parseInt(indicator.dataset.index);
+                showSlide(index);
+            });
+        });
+
+        // 自動スライド（5秒ごと）
+        let autoSlideInterval = setInterval(() => {
+            let nextIndex = (currentIndex + 1) % slideCount;
+            showSlide(nextIndex);
+        }, 5000);
+
+        // DOMContentLoadedを待ってからスクリプトを実行
+        document.addEventListener('DOMContentLoaded', () => {
+            // モバイルメニューのトグル機能
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('nav ul');
+
+            console.log("menuToggle element:", menuToggle); // デバッグ用
+            console.log("navUl element:", navUl);     // デバッグ用
+
+            if (menuToggle && navUl) { // 要素が確実に存在するかチェック
+                menuToggle.addEventListener('click', () => {
+                    console.log("Menu toggle clicked!"); // デバッグ用
+                    navUl.classList.toggle('active');
+                    menuToggle.classList.toggle('active'); // ハンバーガーアイコンのアニメーション用
+                });
+
+                // メニュー項目クリックでメニューを閉じる (モバイル時)
+                navUl.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            navUl.classList.remove('active');
+                            menuToggle.classList.remove('active'); // ハンバーガーアイコンの状態をリセット
+                        }
+                    });
+                });
+            } else {
+                console.error("Menu toggle or navigation list element not found!"); // デバッグ用
+            }
+        });
+
+
+        // Worksセクションのスクロールアニメーション (Intersection Observer)
+        // AboutとOthersを除くセクションに適用
+        const workSections = document.querySelectorAll('section:not(#about):not(#others)');
+        const observerOptions = {
+            root: null, // ビューポートをルートとする
+            rootMargin: '0px',
+            threshold: 0.3 // 要素の30%が表示されたらコールバックを実行
+        };
+
+        const workObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                const description = entry.target.querySelector('.work-description');
+                const imagesWrapper = entry.target.querySelector('.work-images-wrapper');
+                if (entry.isIntersecting) {
+                    // PCサイズのみアニメーションを適用
+                    if (window.innerWidth > 768) {
+                        if (description) description.classList.add('active');
+                        if (imagesWrapper) imagesWrapper.classList.add('active');
+                    } else {
+                        // モバイルでは常に表示
+                        if (description) description.classList.add('active');
+                        if (imagesWrapper) imagesWrapper.classList.add('active');
+                    }
+                } else {
+                    // スクロールで画面外に出たらアニメーションをリセットしたい場合 (PCのみ)
+                    if (window.innerWidth > 768) {
+                        if (description) description.classList.remove('active');
+                        if (imagesWrapper) imagesWrapper.classList.remove('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        workSections.forEach(section => {
+            workObserver.observe(section);
+        });
+
+
+        // 画像の読み込みエラーハンドリング
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = function() {
+                this.src = 'https://placehold.co/200x200/cccccc/000000?text=Error'; // エラー時の代替画像
+                this.alt = '画像が読み込めませんでした';
+            };
+        });
+
+    </script>
+</body>
+</html>
