@@ -12,7 +12,7 @@
       background-color: #000;
       color: #fff;
       overflow-x: hidden;
-      font-size: 15px;   /* PCベースフォントサイズ */
+      font-size: 15px; /* PCベースフォントサイズ */
       line-height: 1.5;
     }
 
@@ -118,7 +118,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.3rem;  /* PC時のスライダー文字サイズ */
+      font-size: 2.3rem; /* PC時のスライダー文字サイズ */
       color: #fff;
       background-size: cover;
       background-position: center;
@@ -155,7 +155,7 @@
     }
 
     .indicator {
-      width: 30px;    /* 横長の細い四角 */
+      width: 30px; /* 横長の細い四角 */
       height: 4px;
       background: rgba(255, 255, 255, 0.3);
       cursor: pointer;
@@ -221,7 +221,7 @@
       }
 
       .slide {
-        font-size: 1.2rem;  /* スライダー文字を控えめに */
+        font-size: 1.2rem; /* スライダー文字を控えめに */
         letter-spacing: 0.05em;
         line-height: 1.3;
         padding: 0 10px;
@@ -231,8 +231,7 @@
 </head>
 <body>
   <header>
-    <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('active')">
-      <span></span>
+    <div class="menu-toggle"> <span></span>
       <span></span>
       <span></span>
     </div>
@@ -247,7 +246,6 @@
     </nav>
   </header>
 
-  <!-- スライダーの部分 -->
   <div class="slider">
     <div class="slides">
       <div class="slide slide1 active">Promotional design</div>
@@ -360,6 +358,32 @@ TOPページや特集ページ、LPなど、目的や導線に合わせた構成
       let nextIndex = (currentIndex + 1) % slideCount;
       showSlide(nextIndex);
     }, 5000);
+
+    // ハンバーガーメニューのトグル要素を取得
+    const menuToggle = document.querySelector('.menu-toggle');
+    // ナビゲーションメニューのul要素を取得
+    const navUl = document.querySelector('nav ul');
+
+    // ハンバーガーメニューアイコンがクリックされた時の処理
+    // HTMLのonclick="document.querySelector('nav ul').classList.toggle('active')" を削除して、こちらに記述します
+    menuToggle.addEventListener('click', () => {
+      navUl.classList.toggle('active');
+    });
+
+    // ナビゲーションメニュー内のリンクがクリックされた時の処理
+    navUl.querySelectorAll('a').forEach(anchor => {
+      anchor.addEventListener('click', (event) => {
+        // もしハンバーガーメニューが開いている状態であれば閉じる
+        if (navUl.classList.contains('active')) {
+          navUl.classList.remove('active');
+        }
+        // ここでevent.preventDefault(); をコメントアウトしたままにすることで、
+        // デフォルトのページ内スクロール（アンカーリンク）は維持されます。
+        // もしスムーズスクロールを独自に実装したい場合は、event.preventDefault();を有効にして、
+        // スクロール処理を追加してください。
+      });
+    });
+
   </script>
 </body>
 </html>
