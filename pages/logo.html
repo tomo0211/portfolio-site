@@ -204,6 +204,8 @@ p {
     color: #ccc; /* 段落のテキスト色を少し明るく */
 }
 
+
+
 /* ホームセクション */
 #home {
     min-height: 100vh; /* 画面全体に広がる */
@@ -742,76 +744,49 @@ footer {
             color: #0056b3;
         }
 
-        /* Othersセクションのギャラリーグリッド (タイル表示) */
         #others {
-            background-color: #111; /* 背景色を少し濃い黒に */
-            color: #fff; /* テキストを白に */
-            padding: 80px 20px; /* パディングを増やす */
-            min-height: auto; /* 最小高さを解除 */
-            max-width: none; /* 最大幅の制限をなくす */
-            margin: 60px auto; /* 上下のマージンを適用 */
-            border-radius: 0; /* 角丸を削除 */
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* 影を強調 */
-            display: block; /* Flexboxを解除してブロック要素に戻す */
-            text-align: center; /* 見出しを中央揃え */
-        }
+  background-color: #111;
+  color: #fff;
+  padding: 80px 20px;
+  margin: 60px auto;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  text-align: center;
+}
 
-        #others h2 {
-            display: block; /* 見出しを再表示 */
-            color: #fff; /* 見出し色を白に */
-            text-align: center; /* 中央揃え */
-            margin-bottom: 50px; /* 下マージン */
-        }
-        /* Othersセクション内のPタグは引き続き非表示 */
-        #others p {
-            display: none;
-        }
+#others h2 {
+  color: #fff;
+  margin-bottom: 50px;
+}
 
-        #others .gallery {
-            display: grid;
-            /* PCサイズでは自動で列を調整し、各列の最小幅を200pxとする */
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            /* 行の高さは固定で200px */
-            grid-auto-rows: 200px;
-            gap: 15px; /* 画像間の隙間を適度に設定 */
-            width: 100%; /* フル幅に */
-            max-width: 1200px; /* 最大幅を設定 */
-            margin: 0 auto; /* 中央揃え */
-            border-radius: 0; /* 角丸を削除 */
-            overflow: hidden; /* 角丸からはみ出さないように */
-        }
+#others .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-        #others .gallery-item {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 画像をコンテナに収まるようにトリミング */
-            border-radius: 0; /* 角丸を削除 */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 少し強めの影 */
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* ホバーアニメーション */
-            cursor: pointer;
-        }
+@media (max-width: 767px) {
+  #others .gallery {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
 
-        #others .gallery-item:hover {
-            transform: scale(1.05); /* ホバーで少し拡大 */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* ホバー時に影を強調 */
-            z-index: 1; /* ホバー時に他の画像の上に表示 */
-        }
+#others .gallery-item {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
 
-        /* 画像の大きさのバリエーション (グリッドの列と行のスパンを調整) */
-        #others .gallery-item.size-small {
-            grid-column: span 1;
-            grid-row: span 1;
-        }
+#others .gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
 
-        #others .gallery-item.size-medium {
-            grid-column: span 2; /* 幅2マス */
-            grid-row: span 1; /* 高さ1マス */
-        }
-
-        #others .gallery-item.size-large {
-            grid-column: span 2; /* 幅2マス */
-            grid-row: span 2; /* 高さ2マス */
-        }
 
         /* フッター */
         footer {
@@ -1074,21 +1049,21 @@ footer {
 
         <!-- Others セクション -->
         <section id="others">
-            <h2>Others</h2>
-            <div class="gallery">
-                <!-- 画像を約10枚に削減 -->
-                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/96.jpg?raw=true" alt="Other Image 1" class="gallery-item size-large" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
-                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/96_3.jpg?raw=true" alt="Other Image 2" class="gallery-item size-medium" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
-                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/daimon2.jpg?raw=true" alt="Other Image 3" class="gallery-item size-small" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
-                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/luonto.jpg?raw=true" alt="Other Image 4" class="gallery-item size-medium" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
-                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/Yunnan.jpg?raw=true" alt="Other Image 5" class="gallery-item size-small" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
-                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/zou2.jpg?raw=true" alt="Other Image 6" class="gallery-item size-large" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
-                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/nanako.jpg?raw=true" alt="Other Image 7" class="gallery-item size-small" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
-                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/nanako3.jpg?raw=true" alt="Other Image 8" class="gallery-item size-medium" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
-                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/daimon5.jpg?raw=true" alt="Other Image 9" class="gallery-item size-large" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
-                <img src="https://github.com/tomo0211/portfolio-site/blob/main/images/safebase.jpg?raw=true" alt="Other Image 10" class="gallery-item size-small" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/000000?text=Error';">
-            </div>
-        </section>
+  <h2>Others</h2>
+  <div class="gallery">
+    <img src="https://raw.githubusercontent.com/tomo0211/portfolio-site/main/images/96.jpg" alt="Other Image 1" class="gallery-item">
+    <img src="https://raw.githubusercontent.com/tomo0211/portfolio-site/main/images/96_3.jpg" alt="Other Image 2" class="gallery-item">
+    <img src="https://raw.githubusercontent.com/tomo0211/portfolio-site/main/images/daimon2.jpg" alt="Other Image 3" class="gallery-item">
+    <img src="https://raw.githubusercontent.com/tomo0211/portfolio-site/main/images/luonto.jpg" alt="Other Image 4" class="gallery-item">
+    <img src="https://raw.githubusercontent.com/tomo0211/portfolio-site/main/images/Yunnan.jpg" alt="Other Image 5" class="gallery-item">
+    <img src="https://raw.githubusercontent.com/tomo0211/portfolio-site/main/images/zou2.jpg" alt="Other Image 6" class="gallery-item">
+    <img src="https://raw.githubusercontent.com/tomo0211/portfolio-site/main/images/nanako.jpg" alt="Other Image 7" class="gallery-item">
+    <img src="https://raw.githubusercontent.com/tomo0211/portfolio-site/main/images/nanako3.jpg" alt="Other Image 8" class="gallery-item">
+    <img src="https://raw.githubusercontent.com/tomo0211/portfolio-site/main/images/daimon5.jpg" alt="Other Image 9" class="gallery-item">
+    <img src="https://raw.githubusercontent.com/tomo0211/portfolio-site/main/images/safebase.jpg" alt="Other Image 10" class="gallery-item">
+  </div>
+</section>
+
     </main>
 
     <footer>
